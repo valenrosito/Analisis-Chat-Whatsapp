@@ -40,7 +40,7 @@ if uploaded_file is not None:
                 grupo_datos = chat['message'].str.split(':', n=1, expand=True)  # Usamos n=1 para dividir solo en el primer ':'
 
                 grupo_datos.columns = ['Usuario', 'Mensaje']
-                grupo_datos['Mensaje'] = grupo_datos['Mensaje'].str.apply(lambda x: x.lower().replace("omitido", "eliminado"))
+                grupo_datos['Mensaje'] = grupo_datos['Mensaje'].apply(lambda x: x.str.lower().replace("omitido", "eliminado"))
 
                 # Eliminamos filas donde 'Usuario' sea NaN (mensajes del sistema como "María agregó a Juan")
                 grupo_datos = grupo_datos.dropna(subset=['Usuario'])
